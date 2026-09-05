@@ -1,0 +1,18 @@
+interface:
+  display_name: azure mermaid compatible
+  short_description: Create and review Mermaid diagrams for technical documentation
+    using Azure DevOps as the compatibility baseline while preserving rendering in
+    VS Code and other standard Mermaid Markdown previews. Use whenever the user asks
+    to document a flow, process, architecture, sequence, state machine, entity relationship,
+    class model, deployment, CI/CD pipeline, integration, request lifecycle, data
+    flow, or other technical diagram in Markdown/Mermaid, unless the user explicitly
+    requests another diagram format.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true
