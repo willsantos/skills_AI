@@ -2,6 +2,8 @@
 name: local-pr-review
 description: Review local Git changes before they become a pull request. Validate the diff against project specs, repository instructions, tests, code conventions, security, correctness, maintainability, performance, architecture, UI rules, and commit policy. Write every review to .reviews/ without deciding whether that directory is versioned.
 metadata:
+  author: "willsantos"
+  github: "https://github.com/willsantos"
   version: "1.0.0"
 ---
 
