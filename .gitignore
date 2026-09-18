@@ -1,0 +1,3 @@
+# Hidden directories and files
+.*
+!.gitignore

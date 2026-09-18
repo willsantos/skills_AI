@@ -1,0 +1,14 @@
+interface:
+  display_name: Azure Boards Development Tasks
+  short_description: Gera Tasks técnicas prontas para o Azure Boards
+  default_prompt: Use $azure-board-dev-tasks para decompor esta demanda em Tasks técnicas,
+    estimadas e verificáveis.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true
