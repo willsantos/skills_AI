@@ -8,5 +8,7 @@
 | Uma operação única de poucas linhas | Código local e legível | Interface, factory e serviço só para acomodá-la |
 | Código semelhante com diferenças de domínio | Manter separado quando a abstração obscurece regras | Generalizar apenas porque os trechos parecem iguais |
 | Alteração de esquema com risco de perda | Migração segura e verificação adequada | Encolher o diff à custa de dados |
+| `.specs/` contradiz a mudança necessária | Adendo mínimo no ponto da regra, com o que muda e o que permanece | Implementar contra a spec ou reescrever o arquivo inteiro |
+| `.specs/` ausente ou silente sobre o fluxo | Seguir a escada | Inventar aceite ou tratar README como spec |
 
 Uma solução com mais linhas pode ser melhor quando explicita estados, melhora diagnóstico ou evita acoplamento. Uma linha a menos não justifica reduzir segurança, acessibilidade ou clareza.
