@@ -1,0 +1,14 @@
+interface:
+  display_name: Morcegador
+  short_description: Encontre a menor mudança correta em código
+  default_prompt: Use o Morcegador para implementar esta tarefa com a menor mudança
+    correta e revisar o diff ao final.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

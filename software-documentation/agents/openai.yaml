@@ -1,0 +1,13 @@
+interface:
+  display_name: Software Documentation
+  short_description: Cria, atualiza e organiza documentação Docusaurus
+  default_prompt: Use software-documentation para estruturar, versionar ou documentar este projeto no padrão Docusaurus.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true
