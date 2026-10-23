@@ -1,0 +1,12 @@
+<%= form_with model: task, data: { controller: "character-count" } do |form| %>
+  <% if task.errors.any? %>
+    <div role="alert">
+      <%= task.errors.full_messages.to_sentence %>
+    </div>
+  <% end %>
+  <%= form.label :title, "Título" %>
+  <%= form.text_field :title, data: { character_count_target: "input", action: "input->character-count#update" } %>
+  <%= form.hidden_field :lock_version if task.persisted? %>
+  <output data-character-count-target="count" aria-live="polite"></output>
+  <%= form.submit "Salvar tarefa" %>
+<% end %>

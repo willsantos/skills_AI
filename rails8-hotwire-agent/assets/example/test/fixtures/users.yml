@@ -1,0 +1,7 @@
+alice:
+  email_address: alice@example.test
+  password_digest: <%= BCrypt::Password.create("password-for-tests", cost: BCrypt::Engine::MIN_COST) %>
+
+bob:
+  email_address: bob@example.test
+  password_digest: <%= BCrypt::Password.create("password-for-tests", cost: BCrypt::Engine::MIN_COST) %>

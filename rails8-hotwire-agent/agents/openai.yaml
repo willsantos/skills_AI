@@ -1,0 +1,13 @@
+interface:
+  display_name: Rails 8 + Hotwire
+  short_description: Desenvolva Rails com Hotwire, segurança e testes
+  default_prompt: Use $rails8-hotwire-agent para implementar esta tarefa seguindo as convenções do projeto e verificando testes e autorização.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

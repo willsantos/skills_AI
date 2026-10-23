@@ -37,7 +37,13 @@ bin/brakeman -q               # se existir
 bin/ci                        # se existir e for o pipeline definido pelo projeto
 ```
 
-A skill inclui `scripts/check.sh` com modos `fast` e `full`. Ele falha quando checks obrigatórios existentes falham e explica checks ausentes; não modifica produção. Nunca executar `bin/rails db:prepare` em produção automaticamente.
+A skill inclui `scripts/check.sh` com modos `fast`, `full` e `ci`. Executar da raiz do app. `fast` exclui system/features; `full` inclui navegador. Detecta Minitest/RSpec; se ambos existirem, definir `TEST_SUITE=minitest` ou `TEST_SUITE=rspec` conforme pipeline, sem fingir que a outra suíte rodou. Resumos sem testes executados ou com falhas são erro; ferramentas ausentes são reportadas como NÃO EXECUTADO.
+
+Se `bin/ci` existir, revisar seu conteúdo, chamadas indiretas, banco e ambiente antes de `CI_REVIEWED=1 scripts/check.sh ci`. Modo `ci` não adiciona checks próprios: delega ao pipeline e exige resumo reconhecível de testes Minitest/RSpec. Pipelines com formato customizado precisam adapter explícito, não bypass do gate. Modos locais não alegam equivalência ao CI. Nunca executar `db:prepare` em produção automaticamente.
+
+O gate recusa ambientes diferentes de development/test e força RAILS_ENV/RACK_ENV=test para comandos locais; isso não comprova que connection strings apontam a testes. Inspecionar `DATABASE_URL`, configurações e efeitos de inicializadores; usar credenciais de privilégio mínimo. Não prometer que um script genérico conhece infraestrutura do projeto.
+
+Para reproduzir o exemplo e testes de navegador, ler `testing-example.md`. Para regressões do gate sem Rails/browser, executar `python3 scripts/test_check.py` a partir da pasta da skill.
 
 ## Definition of Done
 
@@ -48,6 +54,7 @@ A skill inclui `scripts/check.sh` com modos `fast` e `full`. Ele falha quando ch
 - [ ] Migrations compatíveis, índices/constraints/rollback considerados.
 - [ ] Turbo e Stimulus validados em browser quando houve alterações na interação.
 - [ ] Testes relevantes, Zeitwerk, lint e análise de segurança executados **ou impedimento declarado**.
+- [ ] Contagem de testes/expectativas e suites excluídas registradas; nenhum teste executado não é aprovação.
 - [ ] Sem dados sensíveis em logs, commits ou templates.
 - [ ] Sem regressões evidentes, gems supérfluas ou infraestrutura desnecessária.
 - [ ] Descrição final contém arquivos modificados, comandos executados, resultados e pontos em aberto.

@@ -1,0 +1,7 @@
+alice_task:
+  user: alice
+  title: Alice private task
+
+bob_task:
+  user: bob
+  title: Bob private task

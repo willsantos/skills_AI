@@ -10,6 +10,7 @@
 - Proibir `db:reset`, `db:drop`, `db:schema:load` e equivalentes em produção sem aprovação e plano explícito de recuperação.
 - Prevenir N+1 com consultas adequadas, verificar queries em logs/testes, não usar `includes` indiscriminadamente.
 - Utilizar transações para mudanças relacionadas; manter transações curtas e não segurar locks durante APIs remotas.
+- `update_all`, `insert_all`, `update_columns` e SQL direto podem ignorar validations/callbacks. Revisar constraints, autorização/tenant e efeitos perdidos antes de usá-los. Para conflitos e efeitos externos, seguir `consistency.md`.
 
 ## Active Job / Solid Queue
 
@@ -48,6 +49,8 @@ A implementação de `generate!` e seus efeitos devem ser idempotentes de verdad
 - Reusar Active Storage antes de criar armazenamento próprio.
 - Verificar validação de tamanho/tipo, permissão de download e proteção de anexos sensíveis.
 - Não confiar no content-type informado pelo cliente; não expor blobs sem autorização.
+- Controllers padrão de Active Storage são públicos; autenticação no `ApplicationController` não os protege automaticamente. Para anexos privados, implementar controllers autenticados/escopados e desabilitar rotas padrão quando adequado (`config.active_storage.draw_routes = false`), preservando as rotas autenticadas necessárias. URL assinada é acesso por posse do link, não autorização por usuário; não confundir expiração da URL do serviço com permanência do signed ID.
+- Testar acesso direto à URL do blob por anônimo e usuário de outro tenant, não somente página que contém o link. Rever cache/proxy/CDN e possibilidade de compartilhamento da URL após autenticação.
 - Para VPS, preservar arquivos em volume persistente ou usar object storage externo e backup correspondente.
 
 ## IA e serviços externos

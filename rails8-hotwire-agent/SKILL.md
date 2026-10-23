@@ -1,16 +1,11 @@
 ---
 name: rails8-hotwire-agent
-description: >-
-  Padroniza o desenvolvimento e a manutenção de produtos Ruby on Rails 8 com
-  Hotwire (Turbo e Stimulus), testes, Active Record, Active Job/Solid Queue e
-  deploy em VPS Linux com Kamal. Use ao criar ou alterar funcionalidades Rails,
-  revisar arquitetura, implementar CRUD, autenticação/autorização, jobs, UI
-  interativa, integrações, migrations, corrigir bugs e preparar releases.
-  Prioriza convenções nativas, monólito modular pragmático, baixo acoplamento,
-  segurança e verificações executáveis para agentes de IA.
+description: "Desenvolver e manter aplicações Rails 8 com Hotwire, Active Record e Active Job. Use when implementar CRUD Rails, corrigir Turbo Frames/Streams, adicionar Stimulus, revisar autorização, migrations, jobs ou preparar deploy Rails com Kamal. Do NOT use for aplicações não Rails, dúvidas genéricas de Ruby, interfaces SPA sem integração Rails ou administração de VPS sem contexto de aplicação Rails."
 compatibility: "Rails 8.x; Rails 8.1 recomendado em 2026; Ruby e gems conforme Gemfile.lock; Linux/macOS; banco conforme projeto; Kamal opcional"
 metadata:
-  version: "1.0.0"
+  author: "willsantos"
+  github: "https://github.com/willsantos"
+  version: "1.1.0"
   language: "pt-BR"
   updated: "2026-10-23"
 ---
@@ -71,6 +66,7 @@ Escolha a técnica **mais simples**:
 
 - Páginas devem continuar funcionais com resposta HTML normal sempre que viável (progressive enhancement).
 - Formulários inválidos retornam status `422 Unprocessable Entity` (ou o comportamento suportado na versão do projeto), mantendo erros e campos.
+- Em redirects após escrita, preferir `303 See Other`. Ao atualizar conteúdo de um frame, usar `update`; `replace` exige recriar o wrapper com o mesmo ID. Testar duas submissões consecutivas e uma inválida.
 - IDs de Turbo Frames/Streams estáveis e únicos (`dom_id`), partials com nomes consistentes, sem duplicar marcação.
 - Não enviar HTML privado para canais de broadcast amplos; autorizar a consulta **e** o escopo da transmissão.
 - Testar redirecionamentos, respostas Turbo, falhas de validação e fluxos críticos no navegador.
@@ -84,6 +80,7 @@ Leia [Hotwire, Turbo e Stimulus](references/hotwire.md) quando houver trabalho d
 - Multi-tenant: toda consulta, alteração, job e broadcast deve respeitar escopo de conta/usuário.
 - Para background: usar Active Job e **Solid Queue** quando for o backend configurado. Não instalar Redis/Sidekiq por reflexo.
 - Jobs devem ser idempotentes, ter timeouts/retries proporcionais e observabilidade. Não assumir atomicidade entre transação do app e fila em outro banco.
+- Antes de alterar concorrência, unicidade, pagamentos ou entrega confiável, ler `references/consistency.md`; definir conflitos, deduplicação persistida e recuperação após falha parcial.
 - Preferir Active Storage, Action Mailer, Action Cable/Solid Cable e Solid Cache quando cobrirem o requisito e estiverem configurados.
 - Integração com IA: encapsular provedores em um adapter pequeno, guardar segredos fora do código, validar entradas/saídas, impor timeout/custo/limites, evitar dados sensíveis em prompts/logs, medir qualidade e gasto; não introduzir Python/Rust sem necessidade.
 
@@ -96,7 +93,7 @@ Leia [Persistência, jobs e integrações](references/data-jobs.md) para detalhe
 - Nunca executar comandos destrutivos de produção, migrar banco produtivo, fazer deploy, apagar dados ou alterar DNS sem confirmação explícita e mecanismo de recuperação.
 - Testar casos de sucesso, validação, autorização negativa e regressões. Preferir Minitest padrão se projeto não usar outra suíte.
 - Antes de concluir, executar os comandos realmente disponíveis: `bin/rails test`, `bin/rails zeitwerk:check`, `bin/rubocop`, `bin/brakeman`; incluir `bin/rails test:system` para jornadas críticas ou interatividade alterada. Se `bin/ci` existir, priorizar o pipeline do projeto. **Não alegar testes que não foram executados.**
-- Para verificações locais rápidas, usar `scripts/check.sh` desta skill; ele não executa deploy nem migrations de produção.
+- Para verificações locais, usar `scripts/check.sh` desta skill: seleciona Minitest/RSpec e rejeita execução sem testes. Revisar `bin/ci` antes de autorizar modo `ci`; exit code zero sozinho não comprova cobertura nem segurança de ambiente.
 
 Leia [Segurança, testes e revisão](references/security-quality.md).
 
@@ -125,6 +122,16 @@ Leia [VPS Linux, Kamal e operação](references/vps.md) ao preparar deploy/infra
 Se faltar acesso ao banco/browser/rede, declarar a limitação e fornecer os comandos de reprodução. **Nunca inventar saída, resultado de teste, benchmark ou comportamento de gem.**
 
 Leia [Fluxo de trabalho para agentes](references/agent-workflow.md) para instruções de execução e critérios de aceite.
+
+## Exemplos de uso e recursos sob demanda
+
+- **Pedido:** "Corrija formulário Turbo que para após primeira criação". **Resultado esperado:** preservar frame, erros e valores; system test com duas criações e validação inválida. Ler `references/hotwire.md`.
+- **Pedido:** "Impeça usuário de outra conta de acessar uma tarefa". **Resultado esperado:** escopo autorizado no servidor, teste negativo de leitura/escrita e ausência de vazamento. Ler `references/security-quality.md`.
+- **Pedido:** "Torne job seguro para reexecução". **Resultado esperado:** política persistida de idempotência e efeitos externos, não apenas `return if processed?`. Ler `references/consistency.md`.
+- Ao instalar/adaptar instruções no projeto, usar `assets/AGENTS.template.md`; ao revisar entrega, usar `assets/PR_CHECKLIST.template.md`.
+- Ao modificar ou validar o exemplo, ler `references/testing-example.md`; criar sandbox novo com `scripts/verify-example.py`. Código e testes completos ficam em `assets/example/`, sem autenticação fictícia no app publicado.
+- Ao alterar gate, executar `scripts/test_check.py`; `scripts/assert-test-count.rb` valida os resumos dos runners usados por `scripts/check.sh`.
+- Ao avaliar ativação e aderência da skill, ler `evals/scenarios.md`. Testar código de exemplo não comprova comportamento do agente.
 
 ## Exemplo de estrutura: começo pequeno
 

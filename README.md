@@ -78,6 +78,15 @@ Para agentes e desenvolvedores adicionando novas skills:
 
 ---
 
+## Rails 8 + Hotwire
+
+`rails8-hotwire-agent/` orienta Rails idiomático, Hotwire, autorização, jobs e operação com Kamal. Copie a pasta completa para o diretório de skills do cliente, por exemplo `.agents/skills/rails8-hotwire-agent/`; não copie somente `SKILL.md`.
+
+- Adapte `assets/AGENTS.template.md` na raiz do projeto. Use `assets/PR_CHECKLIST.template.md` na revisão.
+- No app Rails, execute `bash <caminho-da-skill>/scripts/check.sh fast` ou `full`. Modo `full` requer navegador. Se houver `bin/ci`, revise-o antes de autorizar modo `ci` com `CI_REVIEWED=1`.
+- Para reproduzir código e testes sem alterar uma aplicação existente, siga `rails8-hotwire-agent/references/testing-example.md`. Sandbox usa versões fixadas para teste, não recomenda patches para produção.
+- Skill não substitui testes, revisão de segurança nem conhecimento de domínio. Não executa deploy automaticamente.
+
 ## Licença
 
 Distribuído sob a licença Apache 2.0. Consulte `LICENSE` para mais detalhes.

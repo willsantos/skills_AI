@@ -12,7 +12,7 @@
 
 ## Exemplo: criação de tarefa
 
-Controller idiomático com fallback HTML e template Stream:
+Controller com fallback HTML e template Stream. Versão completa com models, autenticação Rails, views e testes está em `assets/example/`, relativa à raiz da skill; ler `testing-example.md` para executar. Adaptar autenticação ao projeto real.
 
 ```ruby
 # app/controllers/tasks_controller.rb
@@ -24,11 +24,12 @@ class TasksController < ApplicationController
 
     if @task.save
       respond_to do |format|
-        format.html { redirect_to tasks_path, notice: "Tarefa criada" }
+        format.html { redirect_to tasks_path, notice: "Tarefa criada", status: :see_other }
         format.turbo_stream # renderiza create.turbo_stream.erb
       end
     else
-      render :new, status: :unprocessable_entity
+      # Mesmo para Accept turbo_stream, renderizar HTML com o frame esperado.
+      render :new, formats: [ :html ], status: :unprocessable_entity
     end
   end
 
@@ -43,7 +44,7 @@ end
 ```erb
 <%# app/views/tasks/create.turbo_stream.erb %>
 <%= turbo_stream.prepend "tasks", partial: "tasks/task", locals: { task: @task } %>
-<%= turbo_stream.replace "task_form", partial: "tasks/form", locals: { task: Task.new } %>
+<%= turbo_stream.update "task_form", partial: "tasks/form", locals: { task: Task.new } %>
 ```
 
 ```erb
@@ -57,6 +58,8 @@ end
 ```
 
 **Importante**: exemplo pressupõe que `Current.user`, associação `tasks`, partial `_task` e `_form` existem. Caso o formulário esteja dentro de um Turbo Frame, GET/POST/invalid responses precisam entregar o `turbo-frame` esperado. Em falhas de validação, retornar o markup do formulário com erros no frame; teste isso com o layout real. Não copiar o exemplo sem ajustar as respostas do projeto.
+
+`update` troca apenas filhos, preservando `<turbo-frame id="task_form">`. `replace` troca o elemento inteiro: só usar se partial também emitir o wrapper com ID correto. Incluir `new.html.erb` com esse frame, partial com mensagens de erro e testes de duas criações seguidas de falha de validação. Redirect de fallback após POST deve usar 303; não confiar em diferenças de tratamento de 302 entre clientes/métodos.
 
 ## Turbo Streams
 

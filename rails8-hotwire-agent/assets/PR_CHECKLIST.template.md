@@ -10,6 +10,8 @@
 - [ ] Stimulus apenas para estado/efeitos locais; lifecycle/cleanup considerados.
 - [ ] Jobs idempotentes, retries e transação/commit revisados.
 - [ ] Testes de comportamento e de regressão executados; system tests nos fluxos críticos.
+- [ ] Contagem de testes registrada; zero testes ou todos ignorados não conta como aprovação.
+- [ ] Form Turbo preserva frame após duas submissões; validação inválida mantém erros/campos.
 - [ ] Zeitwerk, lint, Brakeman e pipeline executados ou impedimento registrado.
 - [ ] Sem alterações de infraestrutura ou deploy fora do escopo.
 - [ ] Descrição final menciona riscos, configuração, migrações e verificações reais.

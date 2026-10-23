@@ -1,0 +1,7 @@
+<h1>Tarefas</h1>
+<div id="tasks">
+  <%= render @tasks %>
+</div>
+<%= turbo_frame_tag "task_form" do %>
+  <%= render "form", task: @task %>
+<% end %>
