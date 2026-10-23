@@ -5,7 +5,7 @@ compatibility: "Agentes com acesso ao repositório e comandos .NET; .NET 10 é a
 metadata:
   author: "willsantos"
   github: "https://github.com/willsantos"
-  version: "1.0.0"
+  version: "1.1.0"
   language: "pt-BR"
   architecture: "modular-monolith-vertical-slices"
 ---
@@ -31,6 +31,8 @@ Implementar a menor solução **correta, verificável e sustentável**, organiza
 4. Consultar documentação atual da versão real do projeto quando APIs/pacotes estiverem incertos. Não presumir que .NET 10, EF Core 10 ou bibliotecas extras já estejam instalados.
 
 ## Regras arquiteturais obrigatórias
+
+Princípios: coesão por operação, fronteiras explícitas, invariantes e comportamento verificável. Minimal APIs, EF direto e ausência de mediator são preferências desta skill, não requisitos universais de Vertical Slice Architecture. Preservar Controllers, MediatR e outras decisões válidas do projeto; justificar mudanças por problema observado.
 
 1. **Módulo = capacidade de negócio** (`Catalog`, `Orders`, `Billing`), não pasta técnica global (`Services`, `Repositories`, `Dtos`).
 2. **Slice = operação completa** (`CreateOrder`, `GetOrder`, `CancelOrder`): reunir contrato HTTP, validação e caso de uso próximo um do outro, com testes específicos.
@@ -71,6 +73,8 @@ Implementar a menor solução **correta, verificável e sustentável**, organiza
 - Nunca hardcodar secrets, tokens, senhas, chaves ou connection strings de produção.
 - `DbContext` não é thread-safe: cada operação concorrente/worker usa scope/instância própria; `await` em todas as operações EF.
 - Respeitar cancelamento, idempotência em webhooks/jobs, controle de acesso por recurso/tenant, transações e concorrência quando relevantes.
+- Ao alterar escritas concorrentes, pagamentos ou publicação de eventos, ler `references/consistency.md` antes de implementar; definir atomicidade, deduplicação, conflitos e recuperação de falhas.
+- Para valores monetários, explicitar moeda, faixa e política de casas decimais; validar antes de persistir e testar round-trip no provider real. Configuração EF não substitui validação.
 - Testes não devem depender de credenciais de produção. Incluir políticas de erro, logs estruturados e dados sensíveis protegidos.
 - Não criar dependências novas nem atualizar versões sem explicar o benefício e verificar compatibilidade.
 
@@ -79,6 +83,9 @@ Implementar a menor solução **correta, verificável e sustentável**, organiza
 - **Estrutura, fronteiras e critérios para abstração:** `references/architecture.md`.
 - **Fluxo de implementação e revisão:** `references/workflow.md`.
 - **Exemplo de feature .NET + EF Core:** `references/example-create-product.md`.
+- **Contratos e isolamento modular:** ler `references/example-module-contract.md` ao integrar módulos ou definir testes de fronteira.
+- **Transações, concorrência e idempotência:** ler `references/consistency.md` ao alterar operações sujeitas a falhas parciais ou concorrência.
+- **Testes executáveis dos exemplos:** ler `references/testing-example.md` ao validar os exemplos; executar `scripts/verify-example.py` somente para criar um sandbox novo fora do projeto de destino. Testes ficam em `assets/example-tests/`.
 - **Verificações, segurança e testes:** `references/quality-gates.md`.
 - **Deploy em VPS Linux:** `references/linux-vps.md`.
 - **Modelo de instruções para repositório:** `assets/AGENTS.example.md`.

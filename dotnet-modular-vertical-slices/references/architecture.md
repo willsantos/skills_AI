@@ -31,6 +31,7 @@ Essa é uma estrutura inicial, **não** um requisito para reorganizar projetos e
 
 - Nomear módulos pelo domínio, não por tecnologia. Cada entidade/tabela tem um módulo responsável por alterá-la.
 - No estágio de projeto único, `AppDbContext` compartilhado é uma conveniência, mas seu uso deve ficar dentro da slice/módulo autorizado. Não atravessar módulos via `Include` nem navegar entidades alheias.
+- Contexto compartilhado e pastas oferecem modularidade por convenção, não isolamento forte. Se isolamento verificável for requisito inicial, separar assemblies e contratos desde o início; não esperar violações recorrentes. Ver exemplo em `example-module-contract.md`.
 - Quando a violação for recorrente, promover módulos a projetos separados com tipos `internal`, interfaces públicas pequenas e, se adequado, DbContexts específicos. Múltiplos DbContexts podem usar o mesmo PostgreSQL com ownership de schemas/tabelas definido.
 - Outra feature do mesmo módulo pode compartilhar um serviço de domínio/consulta quando há lógica efetivamente reutilizada; não antecipar service para toda rota.
 - Comunicação síncrona: contratos públicos do módulo provedor. Comunicação assíncrona: evento de integração + outbox quando consistência/publicação confiável forem requisitos. Não usar eventos para mascarar uma chamada local simples.

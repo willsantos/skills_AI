@@ -25,6 +25,8 @@ O script `scripts/verify-dotnet.sh` executa os primeiros passos a partir da raiz
 | Comunicação entre módulos | Architecture tests de dependência e contrato público |
 | Correção de bug | Teste que falha antes da correção quando possível |
 | Segurança | Testes de autorização, tenant isolation, validação e secrets |
+| Dinheiro/precisão | Rejeitar ou normalizar conforme política; testar valor mínimo/máximo, escala excedente e round-trip no provider real |
+| Concorrência/idempotência | Corrida com duas operações, conflito, repetição e falha parcial conforme `consistency.md` |
 
 ## Checklist antes de concluir
 
@@ -40,6 +42,11 @@ O script `scripts/verify-dotnet.sh` executa os primeiros passos a partir da raiz
 - [ ] Build, testes, analyzers e format executados quando possível.
 - [ ] Alterações de contrato/OpenAPI e migration avaliadas e relatadas.
 - [ ] Sem operações destrutivas ou deploy não autorizado.
+- [ ] Testes realmente descobertos e executados: exit code zero não basta se nenhum teste rodou. Relatar contagem e suites excluídas.
+
+Para validar o exemplo didático, seguir `testing-example.md`. Para features protegidas, adicionar testes com identidade controlada somente no host de testes: anônimo → 401, autenticado sem permissão → 403 e acesso ao recurso de outro tenant → 403/404 conforme contrato, sem vazar dados. A política de autenticação de teste nunca deve entrar na aplicação publicada.
+
+Não usar EF InMemory nem mock de DbSet como prova de SQL, constraints ou transações. Preferir PostgreSQL descartável neste exemplo; outro provider só comprova seu próprio comportamento.
 
 ## Testes arquiteturais
 

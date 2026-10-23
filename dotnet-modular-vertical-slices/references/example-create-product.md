@@ -19,6 +19,8 @@ app.UseExceptionHandler();
 app.MapGet("/health/live", () => TypedResults.Ok(new { status = "ok" }));
 app.MapCatalog();
 app.Run();
+
+public partial class Program { } // Entry point acessível ao WebApplicationFactory.
 ```
 
 Nota: este health check demonstra apenas disponibilidade do processo; criar readiness real quando houver dependências externas. Em produção, adicionar autenticação/autorização e proteção por rota conforme o domínio.
@@ -61,6 +63,12 @@ public sealed class Product
     public string Name { get; private set; } = string.Empty;
     public decimal Price { get; private set; }
     public const int MaxNameLength = 200;
+    public const decimal MaxPrice = 9999999999999999.99m;
+
+    // Política deste exemplo: moeda única definida pelo negócio, até 2 casas,
+    // sem arredondamento implícito. Não generalizar para qualquer moeda.
+    public static bool IsValidPrice(decimal price) =>
+        price > 0 && price <= MaxPrice && decimal.Round(price, 2) == price;
 
     public static Product Create(string name, decimal price)
     {
@@ -69,7 +77,7 @@ public sealed class Product
         name = name.Trim();
         if (name.Length > MaxNameLength)
             throw new ArgumentException("Nome excede o limite permitido", nameof(name));
-        if (price <= 0)
+        if (!IsValidPrice(price))
             throw new ArgumentOutOfRangeException(nameof(price));
         return new Product(Guid.NewGuid(), name, price);
     }
@@ -103,8 +111,8 @@ public static class CreateProduct
             errors[nameof(request.Name)] = ["Nome é obrigatório."];
         else if (request.Name.Trim().Length > Product.MaxNameLength)
             errors[nameof(request.Name)] = [$"Nome deve ter no máximo {Product.MaxNameLength} caracteres."];
-        if (request.Price <= 0)
-            errors[nameof(request.Price)] = ["Preço deve ser maior que zero."];
+        if (!Product.IsValidPrice(request.Price))
+            errors[nameof(request.Price)] = ["Preço deve ser positivo, caber em numeric(18,2) e ter no máximo duas casas decimais."];
         if (errors.Count > 0)
             return TypedResults.ValidationProblem(errors);
 
@@ -148,6 +156,10 @@ public sealed class AppDbContext(DbContextOptions<AppDbContext> options)
 ```
 
 A migration deve criar o schema `catalog` ou o banco deve provisioná-lo antecipadamente; verificar o script gerado, não assumir que o schema existe. Usar teste de integração com PostgreSQL para validar mapeamento, transações e comportamento de criação.
+
+`HasPrecision(18, 2)` não valida entrada. PostgreSQL arredonda casas excedentes; `0.001` poderia virar zero e `12.345` poderia divergir da resposta HTTP. Este exemplo rejeita esses valores, em vez de inventar uma regra de arredondamento. Em sistemas multimoeda, definir moeda e precisão no modelo de negócio. Para proteger gravações fora da aplicação, avaliar também constraints no banco; não presumir que o construtor de domínio valida materialização EF.
+
+Para executar testes de domínio, HTTP e round-trip PostgreSQL deste código, ler `testing-example.md`. Para integrar Orders sem acessar `AppDbContext`, ler `example-module-contract.md`.
 
 ## Evolução se houver complexidade
 

@@ -16,6 +16,7 @@
 4. Implementar handler da slice. Simples: lógica local. Complexo: delegar regra ao modelo/serviço de domínio; manter o endpoint fino o suficiente para ser legível.
 5. Persistir com DbContext do módulo; uma unidade de trabalho por operação. Projetar consultas para DTO e usar `AsNoTracking` em leitura.
 6. Para side effects externos, avaliar necessidade de idempotência, retry, timeout, circuit breaker e outbox.
+   - Se houver concorrência, unicidade ou falhas parciais, aplicar `consistency.md` e definir política antes de implementar. Para dinheiro, alinhar faixa/escala entre contrato, domínio e banco.
 7. Registrar endpoint em `Module.MapEndpoints(...)` e suas dependências em `Module.AddServices(...)` (nomes apenas exemplificativos, seguir repo).
 8. Escrever testes de sucesso, inputs inválidos, acesso negado, invariantes e persistência. Atualizar documentação/OpenAPI.
 9. Executar build, testes e verificação de arquitetura. Não usar flags para esconder erros/avisos.
