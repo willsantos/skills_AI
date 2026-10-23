@@ -1,8 +1,11 @@
 ---
 name: dotnet-modular-vertical-slices
-description: "Desenvolver, revisar, refatorar e manter aplicações ASP.NET Core/.NET usando Monólito Modular + Vertical Slices, Minimal APIs e EF Core com DDD pragmático. Usar ao criar módulos, endpoints, regras de domínio, queries, migrations, testes, integrações, jobs e arquitetura de backend .NET, sobretudo em código escrito por agentes. Evitar Clean Architecture cerimonial, DI e mappings artificiais; garantir limites de módulo, contratos, segurança e verificações executáveis."
+description: "Desenvolver, revisar e manter backends ASP.NET Core/.NET com Monólito Modular, Vertical Slices, Minimal APIs, EF Core e DDD pragmático. Use when criar módulos, implementar endpoints, revisar fronteiras de domínio, refatorar slices ou alterar queries, migrations, testes, integrações e jobs nesse contexto. Do NOT use for frontends, aplicações não .NET, dúvidas genéricas de C# sem contexto de backend ou administração de VPS sem relação com uma aplicação .NET."
 compatibility: "Agentes com acesso ao repositório e comandos .NET; .NET 10 é a referência, adaptar à versão instalada."
 metadata:
+  author: "willsantos"
+  github: "https://github.com/willsantos"
+  version: "1.0.0"
   language: "pt-BR"
   architecture: "modular-monolith-vertical-slices"
 ---
@@ -80,5 +83,17 @@ Implementar a menor solução **correta, verificável e sustentável**, organiza
 - **Deploy em VPS Linux:** `references/linux-vps.md`.
 - **Modelo de instruções para repositório:** `assets/AGENTS.example.md`.
 - **Script opcional de verificação:** `scripts/verify-dotnet.sh`.
+- **Avaliação da skill:** ler `evals/scenarios.md` ao alterar estas instruções ou verificar ativação, limites de escopo e aderência do agente.
+
+## Exemplos de uso
+
+- **Pedido:** "Adicione CreateProduct em Catalog". **Resultado esperado:** slice com Request/Response, validação, invariantes de domínio, persistência EF e testes; sem camadas de passagem.
+- **Pedido:** "Orders precisa mostrar o nome do produto". **Resultado esperado:** consultar contrato público de Catalog, sem acessar suas tabelas ou entidades internas.
+- **Pedido:** "Adicione uma feature neste backend que já usa Controllers". **Resultado esperado:** seguir o padrão existente, sem converter automaticamente para Minimal APIs.
+
+## Falhas de verificação
+
+- Se SDK, banco de testes ou dependências não estiverem disponíveis, informar comando bloqueado e motivo; não declarar build ou testes aprovados.
+- Se build ou testes falharem, registrar falha, corrigir apenas o que estiver no escopo e repetir as verificações afetadas; não ocultar erros com flags ou remover testes.
 
 **Regra final:** menos classes não é objetivo por si só. O objetivo é obter menos pontos de falha, menos decisões arbitrárias para o agente e mais comportamento comprovadamente correto.

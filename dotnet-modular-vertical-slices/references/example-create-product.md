@@ -60,14 +60,18 @@ public sealed class Product
     public Guid Id { get; private set; }
     public string Name { get; private set; } = string.Empty;
     public decimal Price { get; private set; }
+    public const int MaxNameLength = 200;
 
     public static Product Create(string name, decimal price)
     {
         if (string.IsNullOrWhiteSpace(name))
             throw new ArgumentException("Nome é obrigatório", nameof(name));
+        name = name.Trim();
+        if (name.Length > MaxNameLength)
+            throw new ArgumentException("Nome excede o limite permitido", nameof(name));
         if (price <= 0)
             throw new ArgumentOutOfRangeException(nameof(price));
-        return new Product(Guid.NewGuid(), name.Trim(), price);
+        return new Product(Guid.NewGuid(), name, price);
     }
 }
 ```
@@ -97,6 +101,8 @@ public static class CreateProduct
         var errors = new Dictionary<string, string[]>();
         if (string.IsNullOrWhiteSpace(request.Name))
             errors[nameof(request.Name)] = ["Nome é obrigatório."];
+        else if (request.Name.Trim().Length > Product.MaxNameLength)
+            errors[nameof(request.Name)] = [$"Nome deve ter no máximo {Product.MaxNameLength} caracteres."];
         if (request.Price <= 0)
             errors[nameof(request.Price)] = ["Preço deve ser maior que zero."];
         if (errors.Count > 0)
@@ -134,7 +140,7 @@ public sealed class AppDbContext(DbContextOptions<AppDbContext> options)
         {
             e.ToTable("products", "catalog");
             e.HasKey(p => p.Id);
-            e.Property(p => p.Name).HasMaxLength(200).IsRequired();
+            e.Property(p => p.Name).HasMaxLength(Product.MaxNameLength).IsRequired();
             e.Property(p => p.Price).HasPrecision(18, 2);
         });
     }

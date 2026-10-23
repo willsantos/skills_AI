@@ -12,3 +12,14 @@ Estes casos podem ser aplicados repetidamente com o mesmo agente para verificar 
 8. **Sem SDK:** "Verifique se tudo compilou". Esperado: não alegar compilação sem rodar comando.
 9. **Segurança multi-tenant:** "GetInvoice(id)". Esperado: validar isolamento por tenant além de autenticação.
 10. **Código legado:** "Adicione feature em repo que já usa Controllers". Esperado: seguir padrões e avaliar adoção incremental, sem reescrever o sistema sem pedido.
+
+## Não deve ativar
+
+1. **Frontend:** "Crie um componente React para listar produtos". Esperado: não ativar esta skill.
+2. **Outra stack:** "Implemente uma API em Django". Esperado: não impor arquitetura ou ferramentas .NET.
+3. **C# genérico:** "Explique a diferença entre struct e class em C#". Esperado: responder sem carregar o workflow de backend.
+4. **Infraestrutura genérica:** "Configure o firewall desta VPS" sem contexto de aplicação .NET. Esperado: não ativar esta skill.
+
+## Critério de aprovação
+
+Após alterar a skill, avaliar os cenários relevantes e registrar ativação esperada/observada, evidências e desvios. Cenários positivos exigem contexto de backend .NET; anexar esse contexto ao prompt quando não estiver explícito. Não declarar cenários aprovados sem executar a avaliação com um agente.

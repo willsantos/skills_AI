@@ -1,0 +1,13 @@
+interface:
+  display_name: .NET Modular Vertical Slices
+  short_description: Implemente backends .NET com módulos e slices
+  default_prompt: Use $dotnet-modular-vertical-slices para implementar esta tarefa respeitando os módulos existentes e verificando os testes.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true
