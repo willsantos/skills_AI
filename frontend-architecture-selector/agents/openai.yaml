@@ -1,0 +1,13 @@
+interface:
+  display_name: Frontend Architecture Selector
+  short_description: Seleciona e registra a arquitetura de frontend .NET em ADR
+  default_prompt: Use $frontend-architecture-selector para comparar arquiteturas de frontend para este produto .NET, escolher a de menor complexidade que cumpre os requisitos e registrar o ADR.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

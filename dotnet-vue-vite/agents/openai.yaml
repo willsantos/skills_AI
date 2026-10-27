@@ -1,0 +1,13 @@
+interface:
+  display_name: .NET Vue Vite
+  short_description: Frontends Vue 3 + Vite + TypeScript integrados a APIs .NET
+  default_prompt: Use $dotnet-vue-vite para implementar esta feature Vue junto da skill dotnet-frontend-integration, respeitando as convenções do projeto e executando typecheck, lint e testes ao final.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

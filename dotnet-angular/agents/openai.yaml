@@ -1,0 +1,13 @@
+interface:
+  display_name: .NET Angular
+  short_description: Frontends Angular 22 standalone integrados a APIs .NET
+  default_prompt: Use $dotnet-angular para implementar esta feature Angular junto da skill dotnet-frontend-integration, respeitando as convenções do projeto e executando build e testes ao final.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

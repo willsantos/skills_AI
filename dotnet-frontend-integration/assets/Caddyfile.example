@@ -1,0 +1,14 @@
+# EXEMPLO para SPA compilada; substitua domínio, paths e configure serviço HTTPS.
+app.example.com {
+    encode zstd gzip
+    handle /api/* {
+        reverse_proxy 127.0.0.1:8080
+    }
+    handle {
+        root * /srv/myapp/frontend/current
+        try_files {path} /index.html
+        file_server
+    }
+}
+# Atenção: proteja /openapi, /health e outras rotas internas conforme a API.
+# Fallback da SPA atende rotas de página; configure 404 real para assets inexistentes se desejado.

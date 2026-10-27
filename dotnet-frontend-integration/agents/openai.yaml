@@ -1,0 +1,13 @@
+interface:
+  display_name: .NET Frontend Integration
+  short_description: Integração segura de frontend com ASP.NET Core
+  default_prompt: Use $dotnet-frontend-integration para definir contratos OpenAPI, autenticação, CSRF/CORS, erros e deploy do frontend com o backend ASP.NET Core deste projeto.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

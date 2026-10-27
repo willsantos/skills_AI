@@ -87,6 +87,15 @@ Para agentes e desenvolvedores adicionando novas skills:
 - Para reproduzir código e testes sem alterar uma aplicação existente, siga `rails8-hotwire-agent/references/testing-example.md`. Sandbox usa versões fixadas para teste, não recomenda patches para produção.
 - Skill não substitui testes, revisão de segurança nem conhecimento de domínio. Não executa deploy automaticamente.
 
+## Frontends para ASP.NET Core
+
+Quatro skills complementares à `dotnet-modular-vertical-slices`, para produtos .NET publicados em VPS Linux. Copie as pastas completas para o diretório de skills do cliente (ex.: `.agents/skills/dotnet-vue-vite/`).
+
+- `frontend-architecture-selector/` escolhe e registra a arquitetura de frontend (Razor, Blazor, Vue, Angular, React, Next ou Nuxt) via ADR; ativar apenas no início do produto ou em mudança deliberada de stack, não a cada feature.
+- `dotnet-frontend-integration/` define a política comum de integração: OpenAPI como contrato, cookies/CSRF/CORS, `ProblemDetails`, streaming e deploy. Use `assets/AGENTS.example.md` como modelo de orientações do projeto e `assets/Caddyfile.example` para proxy SPA + .NET.
+- `dotnet-vue-vite/` e `dotnet-angular/` implementam features nas respectivas stacks, sempre junto de `dotnet-frontend-integration`; o backend permanece sob `dotnet-modular-vertical-slices`.
+- Razor Pages, Blazor, React/Vite, Next.js e Nuxt são cobertos pelo seletor, mas ainda **não têm skill de implementação dedicada** neste repositório.
+
 ## Licença
 
 Distribuído sob a licença Apache 2.0. Consulte `LICENSE` para mais detalhes.
