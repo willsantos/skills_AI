@@ -1,0 +1,13 @@
+interface:
+  display_name: Software Engineering Quality
+  short_description: Garantias verificáveis de integridade, segurança e testes
+  default_prompt: Use $software-engineering-quality para implementar ou auditar esta tarefa com garantias de concorrência, idempotência, autorização e testes executados.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true
