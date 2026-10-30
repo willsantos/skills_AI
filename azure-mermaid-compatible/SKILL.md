@@ -1,6 +1,6 @@
 ---
 name: azure-mermaid-compatible
-description: Create and review Mermaid diagrams for technical documentation using Azure DevOps as the compatibility baseline while preserving rendering in VS Code and other standard Mermaid Markdown previews. Use whenever the user asks to document a flow, process, architecture, sequence, state machine, entity relationship, class model, deployment, CI/CD pipeline, integration, request lifecycle, data flow, or other technical diagram in Markdown/Mermaid, unless the user explicitly requests another diagram format.
+description: Create and review Mermaid diagrams for technical documentation using Azure DevOps as the compatibility baseline while preserving rendering in VS Code and other standard Mermaid Markdown previews. Use whenever the user asks for a technical Markdown/Mermaid diagram. Do NOT use when the user explicitly requests another diagram format.
 metadata:
   author: "willsantos"
   github: "https://github.com/willsantos"

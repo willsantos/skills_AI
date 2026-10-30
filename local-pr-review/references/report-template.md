@@ -2,7 +2,7 @@
 
 Default language for prose: pt-BR, matching the existing service. Keep the established English section headings.
 
-If reliable PR metadata already exists locally, the heading may use `PR[#<id>](<url>)`. Otherwise use `Local PR Candidate` and never invent an ID/URL.
+If reliable PR metadata already exists locally, the heading may include its verified PR ID and URL. Otherwise use `Local PR Candidate` and never invent an ID or URL.
 
 ```markdown
 ## Code Review — Local PR Candidate

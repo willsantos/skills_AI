@@ -1,0 +1,206 @@
+{
+  "authoring": {
+    "repositoryRevision": "59aece0f5e0152687ad3f72260d1cd50eb979b94",
+    "snapshotDigest": {
+      "algorithm": "sha256-selected-skill-snapshots-v1",
+      "value": "fba5482a1649f88972a527aa7b5842807e699b7f3ef4cd1d04a3b9f030ffe2db"
+    },
+    "workingTree": "clean"
+  },
+  "digestAlgorithm": "sha256-tree-v2-length-prefixed-file-records",
+  "schemaVersion": 4,
+  "skills": [
+    {
+      "classification": "public",
+      "contentDigest": {
+        "algorithm": "sha256-tree-v2-length-prefixed-file-records",
+        "value": "f544db8c31dc4a54bca87431e12ffd53c99bf57fde7325333e1a071804405d77"
+      },
+      "dependencies": [],
+      "id": "azure-board-dev-tasks",
+      "license": "Apache-2.0",
+      "licenseEvidence": {
+        "policy": "reviewed-license-digest-v1",
+        "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+      },
+      "skillVersion": "1.0.0",
+      "sourceCommit": "1a6410bf8fd31edede0e91d52a6d7021fa36f641"
+    },
+    {
+      "classification": "public",
+      "contentDigest": {
+        "algorithm": "sha256-tree-v2-length-prefixed-file-records",
+        "value": "129922b8c8a9ac7f6b5639f29020a198489262e5d89ba949aeafe372041b28c9"
+      },
+      "dependencies": [],
+      "id": "azure-mermaid-compatible",
+      "license": "Apache-2.0",
+      "licenseEvidence": {
+        "policy": "reviewed-license-digest-v1",
+        "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+      },
+      "skillVersion": "1.0.0",
+      "sourceCommit": "1a6410bf8fd31edede0e91d52a6d7021fa36f641"
+    },
+    {
+      "classification": "public",
+      "contentDigest": {
+        "algorithm": "sha256-tree-v2-length-prefixed-file-records",
+        "value": "d49c055c706b1e84f737cd7c2b890ba41b5d7bd14c7dd389b26846f0569994e2"
+      },
+      "dependencies": [],
+      "id": "dotnet-angular",
+      "license": "Apache-2.0",
+      "licenseEvidence": {
+        "policy": "reviewed-license-digest-v1",
+        "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+      },
+      "skillVersion": "1.0.0",
+      "sourceCommit": "1a6410bf8fd31edede0e91d52a6d7021fa36f641"
+    },
+    {
+      "classification": "public",
+      "contentDigest": {
+        "algorithm": "sha256-tree-v2-length-prefixed-file-records",
+        "value": "a54c9a82459d3d61dc29f90be3487f9c199f3ee0a3c59da9afc4a6b78f2209a3"
+      },
+      "dependencies": [],
+      "id": "dotnet-frontend-integration",
+      "license": "Apache-2.0",
+      "licenseEvidence": {
+        "policy": "reviewed-license-digest-v1",
+        "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+      },
+      "skillVersion": "1.0.0",
+      "sourceCommit": "1a6410bf8fd31edede0e91d52a6d7021fa36f641"
+    },
+    {
+      "classification": "public",
+      "contentDigest": {
+        "algorithm": "sha256-tree-v2-length-prefixed-file-records",
+        "value": "ce6d65ff9abf8b2991aaa43505709392026e19996d00e8fed509e9254edf978a"
+      },
+      "dependencies": [],
+      "id": "dotnet-modular-vertical-slices",
+      "license": "Apache-2.0",
+      "licenseEvidence": {
+        "policy": "reviewed-license-digest-v1",
+        "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+      },
+      "skillVersion": "1.1.0",
+      "sourceCommit": "1a6410bf8fd31edede0e91d52a6d7021fa36f641"
+    },
+    {
+      "classification": "public",
+      "contentDigest": {
+        "algorithm": "sha256-tree-v2-length-prefixed-file-records",
+        "value": "fab4969ad8a8af6128138f1a7348f0b5a8485ca727dc5438a6be032c35840dc8"
+      },
+      "dependencies": [],
+      "id": "dotnet-vue-vite",
+      "license": "Apache-2.0",
+      "licenseEvidence": {
+        "policy": "reviewed-license-digest-v1",
+        "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+      },
+      "skillVersion": "1.0.0",
+      "sourceCommit": "1a6410bf8fd31edede0e91d52a6d7021fa36f641"
+    },
+    {
+      "classification": "public",
+      "contentDigest": {
+        "algorithm": "sha256-tree-v2-length-prefixed-file-records",
+        "value": "e57bc4b6983bac7848c80088b3bb96c875473127022f9f5e96128c1c1b3cf6f7"
+      },
+      "dependencies": [],
+      "id": "frontend-architecture-selector",
+      "license": "Apache-2.0",
+      "licenseEvidence": {
+        "policy": "reviewed-license-digest-v1",
+        "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+      },
+      "skillVersion": "1.0.0",
+      "sourceCommit": "1a6410bf8fd31edede0e91d52a6d7021fa36f641"
+    },
+    {
+      "classification": "public",
+      "contentDigest": {
+        "algorithm": "sha256-tree-v2-length-prefixed-file-records",
+        "value": "a3777102f65b6c5af66207afae48d12ec4c5dcd617f5a26c7f756517510b032c"
+      },
+      "dependencies": [],
+      "id": "local-pr-review",
+      "license": "Apache-2.0",
+      "licenseEvidence": {
+        "policy": "reviewed-license-digest-v1",
+        "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+      },
+      "skillVersion": "1.0.0",
+      "sourceCommit": "1a6410bf8fd31edede0e91d52a6d7021fa36f641"
+    },
+    {
+      "classification": "public",
+      "contentDigest": {
+        "algorithm": "sha256-tree-v2-length-prefixed-file-records",
+        "value": "3163af662d6e8488d3bc597ed5b386c29aeb1fc70edb6f79b726cfce00c585b2"
+      },
+      "dependencies": [],
+      "id": "morcegador",
+      "license": "Apache-2.0",
+      "licenseEvidence": {
+        "policy": "reviewed-license-digest-v1",
+        "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+      },
+      "skillVersion": "1.1.0",
+      "sourceCommit": "1a6410bf8fd31edede0e91d52a6d7021fa36f641"
+    },
+    {
+      "classification": "public",
+      "contentDigest": {
+        "algorithm": "sha256-tree-v2-length-prefixed-file-records",
+        "value": "a54e2a9c195fb41eb42caeb2555d74f9ccc93d198556ee06fc132eb9a1d23076"
+      },
+      "dependencies": [],
+      "id": "rails8-hotwire-agent",
+      "license": "Apache-2.0",
+      "licenseEvidence": {
+        "policy": "reviewed-license-digest-v1",
+        "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+      },
+      "skillVersion": "1.1.0",
+      "sourceCommit": "1a6410bf8fd31edede0e91d52a6d7021fa36f641"
+    },
+    {
+      "classification": "public",
+      "contentDigest": {
+        "algorithm": "sha256-tree-v2-length-prefixed-file-records",
+        "value": "c8584b12ff3d1b2d31152c5f5264bb268243ec540e78a775d280dcb5af0ce343"
+      },
+      "dependencies": [],
+      "id": "software-documentation",
+      "license": "Apache-2.0",
+      "licenseEvidence": {
+        "policy": "reviewed-license-digest-v1",
+        "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+      },
+      "skillVersion": "1.0.0",
+      "sourceCommit": "1a6410bf8fd31edede0e91d52a6d7021fa36f641"
+    },
+    {
+      "classification": "public",
+      "contentDigest": {
+        "algorithm": "sha256-tree-v2-length-prefixed-file-records",
+        "value": "e53f9da65edb58aeb18a65432124577256835411803e1c8b280474af408be936"
+      },
+      "dependencies": [],
+      "id": "software-engineering-quality",
+      "license": "Apache-2.0",
+      "licenseEvidence": {
+        "policy": "reviewed-license-digest-v1",
+        "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+      },
+      "skillVersion": "1.0.0",
+      "sourceCommit": "1a6410bf8fd31edede0e91d52a6d7021fa36f641"
+    }
+  ]
+}
