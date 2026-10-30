@@ -1,6 +1,6 @@
 ---
 name: azure-board-dev-tasks
-description: Transformar demandas, bugs, melhorias, débitos técnicos e investigações de software em Tasks técnicas estruturadas para posterior inclusão no Azure Boards. Usar quando for preciso analisar ou decompor trabalho de desenvolvimento e entregar somente Markdown com objetivo, escopo, estimativa inicial em horas e critérios de aceite BDD/Gherkin em pt-BR. Não usar para criar ou alterar Work Items diretamente.
+description: Transformar demandas, bugs, melhorias, débitos técnicos e investigações de software em Tasks técnicas estruturadas para posterior inclusão no Azure Boards. Use when decompor trabalho de desenvolvimento em Markdown com objetivo, escopo, estimativa inicial e critérios BDD/Gherkin em pt-BR. Do NOT use for criar ou alterar Work Items diretamente.
 metadata:
   author: "willsantos"
   github: "https://github.com/willsantos"
