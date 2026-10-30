@@ -1,5 +1,19 @@
 # Oroborus Skills
 
+> **⚠️ Distribuição gerada — não edite skills neste repositório.**
+>
+> A partir de `v0.4.0-rc.5` (2026-10-29), este catálogo é uma **projeção gerada** do repositório autoral
+> [`oroborus-engineering-standards`](https://dev.azure.com/oroborus/oroborus-auto/_git/oroborus-engineering-standards)
+> (branch/tag: `v0.4.0-rc.5`). A autoria, classificação e licenciamento das skills vivem lá; este repositório
+> recebe somente a exportação da allowlist pública (skills `<nome>/` + `provenance.json`, schemaVersion 4).
+>
+> - **Correções e novas skills:** abram PR/issue no repo autoral, não aqui.
+> - **Rastreabilidade:** `provenance.json` relaciona cada skill à revisão autoral, versão e digest de conteúdo.
+> - Mudanças manuais neste repositório serão sobrescritas pela próxima exportação.
+>
+> Repositórios de autoria anteriores em processo de corte: `oroSkills` (builder migrado). Veja `EXECUCAO_M01_A_M05.md`
+> no workspace de planejamento e o ADR-0003/0005 no repo autoral.
+
 Repositório de skills padronizadas para agentes de inteligência artificial (Claude Code, OpenCode, Codex, Gemini CLI, Cursor, Trae, Kiro, etc.).
 
 ---
