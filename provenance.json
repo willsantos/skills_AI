@@ -1,9 +1,9 @@
 {
   "authoring": {
-    "repositoryRevision": "d7d00aa3d8dab4bdb4091475d2975007d04691d2",
+    "repositoryRevision": "dd61444ae876e219aec4c9463bd1a5e86dd3110f",
     "snapshotDigest": {
       "algorithm": "sha256-selected-skill-snapshots-v1",
-      "value": "8ce07d224756f85a419f304afac002921caca42edf311ab773039d383773a92c"
+      "value": "f32d7fbbdf8f7e2001422450d04e5c75776e5d10b88a2d713d2bf502af7bd9a0"
     },
     "workingTree": "clean"
   },
@@ -126,7 +126,7 @@
       "classification": "public",
       "contentDigest": {
         "algorithm": "sha256-tree-v2-length-prefixed-file-records",
-        "value": "680b84af01addda2fb1cc4d56f5815377b759b4339120047b4869d5efd571780"
+        "value": "a20644b8c223d0319fa23c9ae231d5ccec093804da7427261f66a81d348eae14"
       },
       "dependencies": [],
       "id": "local-pr-review",
@@ -135,7 +135,7 @@
         "policy": "reviewed-license-digest-v1",
         "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
       },
-      "skillVersion": "1.1.0",
+      "skillVersion": "1.1.1",
       "sourceCommit": "1a6410bf8fd31edede0e91d52a6d7021fa36f641"
     },
     {
