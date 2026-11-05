@@ -4,7 +4,7 @@ description: Review local Git changes before they become a pull request. Use whe
 metadata:
   author: "willsantos"
   github: "https://github.com/willsantos"
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Local PR Review
@@ -24,6 +24,7 @@ This is a review-only skill. Do not modify product code, rewrite commits, commit
 7. Always write the final report under `.reviews/` in the repository root.
 8. Never add or remove `.reviews/` from `.gitignore`, `.git/info/exclude`, or any VCS configuration. The developer/project decides whether reviews are versioned.
 9. Always exclude `.reviews/**` from the review diff, even when the directory is versioned.
+10. Findings and verdicts follow the shared review contract (`oroborus-engineering-standards`, `schemas/review/finding-contract.schema.json`, `1.0.0-proposta`): the six fixed categories, `[BLOCKER]` ↔ `isBlocking`, verdict derived from findings and completeness — never asserted independently of the evidence.
 
 ## Default review scope
 
@@ -97,18 +98,20 @@ A trigger may load more than one reference. Read a selected reference completely
 
 Run only gates that are declared by the project or are already available without installing new dependencies. Do not weaken, delete, or bypass tests to obtain a passing result.
 
-If a declared gate cannot run because the runtime/toolchain is unavailable, record that fact accurately. Do not claim it passed. Use `references/commits-and-gates.md` for blocking rules.
+If a declared gate cannot run because the runtime/toolchain is unavailable, record that fact accurately with the contract status `not_run`. Do not claim it passed. Use `references/commits-and-gates.md` for blocking rules.
 
 ### 6. Classify findings and decide verdict
 
 Read `references/findings-and-verdict.md`.
 
-Use only two verdicts:
+Classify findings with the shared contract taxonomy: exactly six categories (`Security`, `Performance`, `Maintainability`, `Correctness`, `Conventions`, `Commits`) and the `[BLOCKER]` label mapped to `isBlocking: true`. A blocker over the commit series itself (category `Commits`) is global: it has no `path`/`line` and is still valid.
+
+Use only two verdicts, always derived from the evidence:
 
 - `APPROVE`
 - `REQUEST CHANGES`
 
-Suggestions are non-blocking and do not change an otherwise valid `APPROVE`.
+`REQUEST CHANGES` is required when at least one unresolved `[BLOCKER]` exists, or when mandatory evidence is missing (truncated diff scope, a required gate `not_run`, or a dirty working tree over the reviewed `HEAD`) — a degraded review is never published as `APPROVE`. Suggestions are non-blocking and do not change an otherwise valid `APPROVE`.
 
 ### 7. Write the review artifact
 
@@ -122,7 +125,9 @@ Default filename:
 
 Use a filesystem-safe branch slug. Add `-dirty` when staged or unstaged product changes were included.
 
-The report must use the established Code Review format and include enough SHA/base information to reproduce the reviewed scope.
+The report must use the established Code Review format and include enough SHA/base information to reproduce the reviewed scope: repository, target/base, `HEAD` SHA, and dirty state. Review identity fields mirror the contract envelope (`repo`/`base`/`head`/`dirty state`).
+
+Optionally append one machine-readable fenced `json` block matching `schemas/review/finding-contract.schema.json` (`1.0.0-proposta`) from `oroborus-engineering-standards`: envelope (`review` with provider/repository/head/base/dirty state/scope), `completeness` (`complete` or `incomplete_degraded` with the closed `missing` taxonomy), `gates` statuses, `assessment` findings, and the derived `verdict`. Keep the human-readable report authoritative; the JSON block is a projection of it, and the two must never disagree.
 
 ### 8. Return a terse completion message
 
