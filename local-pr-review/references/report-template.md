@@ -63,7 +63,7 @@ If reliable PR metadata already exists locally, the heading may include its veri
 
 ```json
 {
-  "contractVersion": "1.0.0-proposta",
+  "contractVersion": "1.0.0",
   "review": {
     "provider": "GitHub",
     "repositoryId": "oroborus-auto/orotools",

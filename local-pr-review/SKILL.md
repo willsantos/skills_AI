@@ -4,7 +4,7 @@ description: Review local Git changes before they become a pull request. Use whe
 metadata:
   author: "willsantos"
   github: "https://github.com/willsantos"
-  version: "1.1.0"
+  version: "1.1.1"
 ---
 
 # Local PR Review
@@ -24,7 +24,7 @@ This is a review-only skill. Do not modify product code, rewrite commits, commit
 7. Always write the final report under `.reviews/` in the repository root.
 8. Never add or remove `.reviews/` from `.gitignore`, `.git/info/exclude`, or any VCS configuration. The developer/project decides whether reviews are versioned.
 9. Always exclude `.reviews/**` from the review diff, even when the directory is versioned.
-10. Findings and verdicts follow the shared review contract (`oroborus-engineering-standards`, `schemas/review/finding-contract.schema.json`, `1.0.0-proposta`): the six fixed categories, `[BLOCKER]` ↔ `isBlocking`, verdict derived from findings and completeness — never asserted independently of the evidence.
+10. Findings and verdicts follow the shared review contract (`oroborus-engineering-standards`, `schemas/review/finding-contract.schema.json`, `1.0.0`): the six fixed categories, `[BLOCKER]` ↔ `isBlocking`, verdict derived from findings and completeness — never asserted independently of the evidence.
 
 ## Default review scope
 
@@ -127,7 +127,7 @@ Use a filesystem-safe branch slug. Add `-dirty` when staged or unstaged product 
 
 The report must use the established Code Review format and include enough SHA/base information to reproduce the reviewed scope: repository, target/base, `HEAD` SHA, and dirty state. Review identity fields mirror the contract envelope (`repo`/`base`/`head`/`dirty state`).
 
-Optionally append one machine-readable fenced `json` block matching `schemas/review/finding-contract.schema.json` (`1.0.0-proposta`) from `oroborus-engineering-standards`: envelope (`review` with provider/repository/head/base/dirty state/scope), `completeness` (`complete` or `incomplete_degraded` with the closed `missing` taxonomy), `gates` statuses, `assessment` findings, and the derived `verdict`. Keep the human-readable report authoritative; the JSON block is a projection of it, and the two must never disagree.
+Optionally append one machine-readable fenced `json` block matching `schemas/review/finding-contract.schema.json` (`1.0.0`) from `oroborus-engineering-standards`: envelope (`review` with provider/repository/head/base/dirty state/scope), `completeness` (`complete` or `incomplete_degraded` with the closed `missing` taxonomy), `gates` statuses, `assessment` findings, and the derived `verdict`. Keep the human-readable report authoritative; the JSON block is a projection of it, and the two must never disagree.
 
 ### 8. Return a terse completion message
 

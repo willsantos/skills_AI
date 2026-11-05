@@ -54,7 +54,7 @@ Do not invent `APPROVE WITH SUGGESTIONS`; suggestions remain under the existing 
 
 ## Shared contract mapping
 
-`oroborus-engineering-standards` defines the shared findings contract (`schemas/review/finding-contract.schema.json`, `1.0.0-proposta`). This skill's vocabulary maps onto it as follows:
+`oroborus-engineering-standards` defines the shared findings contract (`schemas/review/finding-contract.schema.json`, `1.0.0`). This skill's vocabulary maps onto it as follows:
 
 | Contract field | This skill |
 |---|---|
